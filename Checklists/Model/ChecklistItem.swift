@@ -12,7 +12,7 @@ class ChecklistItem {
     var text = ""
     var isChecked = false
     
-    init(text: String, isChecked: Bool) {
+    init(text: String, isChecked: Bool = false) {
         self.text = text
         self.isChecked = isChecked
     }

@@ -18,6 +18,7 @@
 		656944DF28B540610056C8CC /* ChecklistsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656944DE28B540610056C8CC /* ChecklistsUITests.swift */; };
 		656944E128B540610056C8CC /* ChecklistsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656944E028B540610056C8CC /* ChecklistsUITestsLaunchTests.swift */; };
 		656944F228B808520056C8CC /* ChecklistItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656944F128B808520056C8CC /* ChecklistItem.swift */; };
+		656944FA28B94D1E0056C8CC /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656944F928B94D1E0056C8CC /* AddItemViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		656944DE28B540610056C8CC /* ChecklistsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistsUITests.swift; sourceTree = "<group>"; };
 		656944E028B540610056C8CC /* ChecklistsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistsUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		656944F128B808520056C8CC /* ChecklistItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistItem.swift; sourceTree = "<group>"; };
+		656944F928B94D1E0056C8CC /* AddItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +151,7 @@
 			children = (
 				656944BE28B5405E0056C8CC /* CheckViewController.swift */,
 				656944C028B5405E0056C8CC /* Main.storyboard */,
+				656944F928B94D1E0056C8CC /* AddItemViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -309,6 +312,7 @@
 				656944BF28B5405E0056C8CC /* CheckViewController.swift in Sources */,
 				656944BB28B5405E0056C8CC /* AppDelegate.swift in Sources */,
 				656944BD28B5405E0056C8CC /* SceneDelegate.swift in Sources */,
+				656944FA28B94D1E0056C8CC /* AddItemViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
