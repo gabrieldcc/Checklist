@@ -10,33 +10,48 @@
         <!--Checklists-->
         <scene sceneID="UGt-5z-3SV">
             <objects>
-                <tableViewController id="gpa-ws-54m" customClass="CheckViewController" customModule="Checklists" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="gpa-ws-54m" customClass="ChecklistViewController" customModule="Checklists" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="7LQ-AB-nvU">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="ChecklistItem" id="UgU-1m-mnk">
-                                <rect key="frame" x="0.0" y="44.5" width="320" height="43.5"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="ChecklistItem" id="UgU-1m-mnk">
+                                <rect key="frame" x="0.0" y="44.5" width="320" height="43"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UgU-1m-mnk" id="Qhk-Gc-I2o">
-                                    <rect key="frame" x="0.0" y="0.0" width="283.5" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="267" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="1000" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pWm-Jq-Qhv">
-                                            <rect key="frame" x="16" y="11" width="259.5" height="21.5"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="1001" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="√" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e3h-lp-WGE">
+                                            <rect key="frame" x="8" y="0.0" width="30" height="43"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="30" id="Gs2-NQ-VyE"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="22"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="1000" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pWm-Jq-Qhv">
+                                            <rect key="frame" x="31" y="11" width="228" height="22"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="pWm-Jq-Qhv" firstAttribute="leading" secondItem="Qhk-Gc-I2o" secondAttribute="leadingMargin" id="DCq-JY-iUY"/>
+                                        <constraint firstItem="e3h-lp-WGE" firstAttribute="leading" secondItem="Qhk-Gc-I2o" secondAttribute="leading" constant="8" id="0Mm-xa-gFZ"/>
+                                        <constraint firstItem="pWm-Jq-Qhv" firstAttribute="leading" secondItem="e3h-lp-WGE" secondAttribute="trailing" id="AXo-hh-iDV"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="pWm-Jq-Qhv" secondAttribute="trailing" id="FpJ-9q-eCd"/>
                                         <constraint firstItem="pWm-Jq-Qhv" firstAttribute="top" secondItem="Qhk-Gc-I2o" secondAttribute="topMargin" id="Ybc-Do-iN1"/>
+                                        <constraint firstItem="e3h-lp-WGE" firstAttribute="top" secondItem="Qhk-Gc-I2o" secondAttribute="top" id="det-gh-HO6"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="pWm-Jq-Qhv" secondAttribute="bottom" id="vW8-pP-X8y"/>
+                                        <constraint firstAttribute="bottom" secondItem="e3h-lp-WGE" secondAttribute="bottom" id="xcn-pe-uEr"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="PfO-1G-stz" kind="show" identifier="EditItem" trigger="accessoryAction" id="8Mm-tr-x6R"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -136,6 +151,9 @@
             <point key="canvasLocation" x="84" y="83"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="8Mm-tr-x6R"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

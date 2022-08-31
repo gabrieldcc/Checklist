@@ -9,13 +9,16 @@
 import UIKit
 
 protocol AddItemViewControllerDelegate: AnyObject {
-    func addItemAction(text: String)
+  func addItemViewControllerDidCancel(_ controller: AddItemViewController)
+  func addItemViewController(_ controller: AddItemViewController, didFinishAdding item: ChecklistItem)
+  func addItemViewController(_ controller: AddItemViewController, didFinishEditing item: ChecklistItem)
 }
 
-class AddItemViewController: UITableViewController, UITextFieldDelegate {
+final class AddItemViewController: UITableViewController, UITextFieldDelegate {
     
-    //MARK: - Vars
+    //MARK: - Var
     weak var delegate: AddItemViewControllerDelegate?
+    var itemToEdit: ChecklistItem?
     
     //MARK: - View lifecycle
     override func viewDidLoad() {
@@ -23,6 +26,7 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate {
         navigationItem.largeTitleDisplayMode = .never
         textField.delegate = self
         doneBarButton.isEnabled = false
+        setEditItemViewController()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,13 +40,23 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate {
     
     //MARK: - IBAction
     @IBAction private func done(_ sender: UIBarButtonItem) {
-        guard let textField = textField.text else { return }
-        delegate?.addItemAction(text: textField)
+        guard let text = textField.text else { return }
+        let item = ChecklistItem(text: text)
+        delegate?.addItemViewController(self, didFinishAdding: item)
         navigationController?.popViewController(animated: true)
     }
     
     @IBAction private func cancel(_ sender: UIBarButtonItem) {
-        navigationController?.popViewController(animated: true)
+        delegate?.addItemViewControllerDidCancel(self)
+    }
+    
+    //MARK: - Functions
+    func setEditItemViewController() {
+        if let item = itemToEdit {
+            title = "Edit Item"
+            textField.text = item.text
+            doneBarButton.isEnabled = true
+        }
     }
     
     //MARK: - UITextFieldDelegate
@@ -62,6 +76,11 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate {
         
         return true
     }
+    
+    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        return nil
+    }
+
 
 }
 

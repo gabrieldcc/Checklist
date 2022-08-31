@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class CheckViewController: UITableViewController, AddItemViewControllerDelegate {
+final class ChecklistViewController: UITableViewController, AddItemViewControllerDelegate {
     
     //MARK: - Var
     private var items = [ChecklistItem]()
@@ -27,16 +27,9 @@ final class CheckViewController: UITableViewController, AddItemViewControllerDel
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
-    //MARK: - Funcs
+    //MARK: - Functions
     func addItemAction(text: String) {
-        let newRowIndex = items.count
         
-        let item = ChecklistItem(text: text)
-        items.append(item)
-        
-        let indexPath = IndexPath(row: newRowIndex, section: 0)
-        let indexPaths = [indexPath]
-        tableView.insertRows(at: indexPaths, with: .automatic)
     }
     
     private func configureText(for cell: UITableViewCell, with item: ChecklistItem) {
@@ -53,19 +46,46 @@ final class CheckViewController: UITableViewController, AddItemViewControllerDel
     }
     
     private func configureCheckmark(for cell: UITableViewCell, with item: ChecklistItem) {
-        
+        let label = cell.viewWithTag(1001) as! UILabel
+
         if item.isChecked {
-            cell.accessoryType = .checkmark
+            label.text = "√"
         } else {
-            cell.accessoryType = .none
+            label.text = ""
         }
+    }
+    
+    //MARK: - AddItemViewControllerDelegate
+    func addItemViewControllerDidCancel(_ controller: AddItemViewController) {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    func addItemViewController(_ controller: AddItemViewController, didFinishAdding item: ChecklistItem) {
+        let newRowIndex = items.count
+        items.append(item)
+        let indexPath = IndexPath(row: newRowIndex, section: 0)
+        let indexPaths = [indexPath]
+        tableView.insertRows(at: indexPaths, with: .automatic)
+        navigationController?.popViewController(animated: true)
+    }
+    
+    func addItemViewController(_ controller: AddItemViewController, didFinishEditing item: ChecklistItem) {
+        
     }
     
     //MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         if segue.identifier == "AddItem" {
             let controller = segue.destination as! AddItemViewController
             controller.delegate = self
+            
+        } else if segue.identifier == "EditItem" {
+            let controller = segue.destination as! AddItemViewController
+            controller.delegate = self
+            
+            guard let indexPath = tableView.indexPath(for: sender as! UITableViewCell) else { return }
+            controller.itemToEdit = items[indexPath.row]
         }
     }
     
@@ -77,6 +97,7 @@ final class CheckViewController: UITableViewController, AddItemViewControllerDel
             item.isChecked.toggle()
             configureCheckmark(for: cell, with: item)
         }
+        print(#function)
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
@@ -94,15 +115,13 @@ final class CheckViewController: UITableViewController, AddItemViewControllerDel
         return cell
     }
     
+    // MARK: - Table View Delegates
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         items.remove(at: indexPath.row)
         let indexPaths = [indexPath]
         tableView.deleteRows(at: indexPaths, with: .automatic)
     }
-    
-    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        return nil
-    }
-    
+
+
 }
 
