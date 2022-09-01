@@ -8,10 +8,13 @@
 import Foundation
 import UIKit
 
-class ChecklistItem {
+class ChecklistItem: NSObject, Codable {
+    
+    //MARK: - Var
     var text = ""
     var isChecked = false
     
+    //MARK: - Init
     init(text: String, isChecked: Bool = false) {
         self.text = text
         self.isChecked = isChecked

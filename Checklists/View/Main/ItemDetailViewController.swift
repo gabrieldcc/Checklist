@@ -8,16 +8,16 @@
 
 import UIKit
 
-protocol AddItemViewControllerDelegate: AnyObject {
-  func addItemViewControllerDidCancel(_ controller: AddItemViewController)
-  func addItemViewController(_ controller: AddItemViewController, didFinishAdding item: ChecklistItem)
-  func addItemViewController(_ controller: AddItemViewController, didFinishEditing item: ChecklistItem)
+protocol ItemDetailViewControllerDelegate: AnyObject {
+  func itemDetailViewControllerDidCancel(_ controller: ItemDetailViewController)
+  func itemDetailViewController(_ controller: ItemDetailViewController, didFinishAdding item: ChecklistItem)
+  func itemDetailViewController(_ controller: ItemDetailViewController, didFinishEditing item: ChecklistItem)
 }
 
-final class AddItemViewController: UITableViewController, UITextFieldDelegate {
+final class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
     
     //MARK: - Var
-    weak var delegate: AddItemViewControllerDelegate?
+    weak var delegate: ItemDetailViewControllerDelegate?
     var itemToEdit: ChecklistItem?
     
     //MARK: - View lifecycle
@@ -41,13 +41,17 @@ final class AddItemViewController: UITableViewController, UITextFieldDelegate {
     //MARK: - IBAction
     @IBAction private func done(_ sender: UIBarButtonItem) {
         guard let text = textField.text else { return }
-        let item = ChecklistItem(text: text)
-        delegate?.addItemViewController(self, didFinishAdding: item)
-        navigationController?.popViewController(animated: true)
+        if let item = itemToEdit {
+            item.text = text
+            delegate?.itemDetailViewController(self, didFinishEditing: item)
+        } else {
+            let item = ChecklistItem(text: text)
+            delegate?.itemDetailViewController(self, didFinishAdding: item)
+        }
     }
     
     @IBAction private func cancel(_ sender: UIBarButtonItem) {
-        delegate?.addItemViewControllerDidCancel(self)
+        delegate?.itemDetailViewControllerDidCancel(self)
     }
     
     //MARK: - Functions
