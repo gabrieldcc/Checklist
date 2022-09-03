@@ -20,6 +20,8 @@
 		656944F228B808520056C8CC /* ChecklistItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656944F128B808520056C8CC /* ChecklistItem.swift */; };
 		656944FA28B94D1E0056C8CC /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656944F928B94D1E0056C8CC /* ItemDetailViewController.swift */; };
 		65821AB128C12DE90032E928 /* AllListsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65821AAF28C12DE90032E928 /* AllListsViewController.swift */; };
+		65821AB428C24AD50032E928 /* Checklist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65821AB328C24AD50032E928 /* Checklist.swift */; };
+		65821AB628C27A1A0032E928 /* ListDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65821AB528C27A190032E928 /* ListDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,8 @@
 		656944F128B808520056C8CC /* ChecklistItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistItem.swift; sourceTree = "<group>"; };
 		656944F928B94D1E0056C8CC /* ItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
 		65821AAF28C12DE90032E928 /* AllListsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllListsViewController.swift; sourceTree = "<group>"; };
+		65821AB328C24AD50032E928 /* Checklist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checklist.swift; sourceTree = "<group>"; };
+		65821AB528C27A190032E928 /* ListDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				656944F128B808520056C8CC /* ChecklistItem.swift */,
+				65821AB328C24AD50032E928 /* Checklist.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -152,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				656944C028B5405E0056C8CC /* Main.storyboard */,
+				65821AB528C27A190032E928 /* ListDetailsViewController.swift */,
 				65821AAF28C12DE90032E928 /* AllListsViewController.swift */,
 				656944BE28B5405E0056C8CC /* ChecktlistViewController.swift */,
 				656944F928B94D1E0056C8CC /* ItemDetailViewController.swift */,
@@ -315,6 +321,8 @@
 				656944F228B808520056C8CC /* ChecklistItem.swift in Sources */,
 				656944BF28B5405E0056C8CC /* ChecktlistViewController.swift in Sources */,
 				656944BB28B5405E0056C8CC /* AppDelegate.swift in Sources */,
+				65821AB428C24AD50032E928 /* Checklist.swift in Sources */,
+				65821AB628C27A1A0032E928 /* ListDetailsViewController.swift in Sources */,
 				656944BD28B5405E0056C8CC /* SceneDelegate.swift in Sources */,
 				656944FA28B94D1E0056C8CC /* ItemDetailViewController.swift in Sources */,
 			);

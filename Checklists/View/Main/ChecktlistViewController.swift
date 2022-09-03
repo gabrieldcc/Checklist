@@ -11,13 +11,15 @@ final class ChecklistViewController: UITableViewController, ItemDetailViewContro
     
     //MARK: - Var
     private var items = [ChecklistItem]()
-    var addItemVC = ItemDetailViewController()
+    private var addItemVC = ItemDetailViewController()
+    var checklist: Checklist!
     
     //MARK: - Let
     private let row0item = ChecklistItem(text: "Edit me")
+    private let cellIdentifier = "ChecklistCell"
     
     
-    //MARK: - View lifecycle
+    //MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         appendItems()
@@ -25,6 +27,7 @@ final class ChecklistViewController: UITableViewController, ItemDetailViewContro
         print("Documents folder is \(documentsDirectory())")
         print("Data file path is \(dataFilePath())")
         loadChecklistItem()
+        title = checklist.name
     }
     
     //MARK: - Functions
@@ -151,14 +154,12 @@ final class ChecklistViewController: UITableViewController, ItemDetailViewContro
         return cell
     }
     
-    // MARK: - Table View Delegates
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         items.remove(at: indexPath.row)
         let indexPaths = [indexPath]
         tableView.deleteRows(at: indexPaths, with: .automatic)
         saveChecklistsItems()
     }
-    
     
 }
 
