@@ -10,15 +10,25 @@ import Foundation
 final class DataModel {
     var lists = [Checklist]()
     
+    //MARK: - Init
+    init() {
+        loadChecklists()
+    }
+    
+    private func registerDefaults() {
+        let dictionary = ["ChecklistIndex": -1]
+        UserDefaults.standard.register(defaults: dictionary)
+    }
+    
     //MARK: - Data Saving
-    func documentsDirectory() -> URL {
+    private func documentsDirectory() -> URL {
         let paths = FileManager.default.urls(
             for: .documentDirectory,
             in: .userDomainMask)
         return paths[0]
     }
     
-    func dataFilePath() -> URL {
+    private func dataFilePath() -> URL {
         return
         documentsDirectory().appendingPathComponent("Checklists.plist")
     }
@@ -35,7 +45,7 @@ final class DataModel {
         }
     }
 
-    func loadChecklists() {
+    private func loadChecklists() {
         let path = dataFilePath()
         if let data = try? Data(contentsOf: path) {
             let decoder = PropertyListDecoder()
