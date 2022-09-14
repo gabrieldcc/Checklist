@@ -69,12 +69,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Od-6j-KWi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="998" y="172"/>
+            <point key="canvasLocation" x="1967" y="99"/>
         </scene>
         <!--Add Checklist-->
         <scene sceneID="zu5-gB-zly">
             <objects>
-                <tableViewController id="tHV-fo-64M" customClass="ListDetailsViewController" customModule="Checklists" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ListDetailsViewController" id="tHV-fo-64M" customClass="ListDetailsViewController" customModule="Checklists" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="m2G-yM-isp">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -94,7 +94,8 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                                     <connections>
-                                                        <action selector="done" destination="tHV-fo-64M" eventType="editingDidEndOnExit" id="ee5-Tv-oRf"/>
+                                                        <action selector="done" destination="tHV-fo-64M" eventType="editingDidEndOnExit" id="7hV-NE-xrK"/>
+                                                        <outlet property="delegate" destination="tHV-fo-64M" id="0f9-qT-e6g"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -136,16 +137,20 @@
                                 <action selector="cancel" destination="tHV-fo-64M" id="mQG-kM-ZdC"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="done" id="NxQ-Cq-d0b"/>
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="done" id="NxQ-Cq-d0b">
+                            <connections>
+                                <action selector="done" destination="tHV-fo-64M" id="B2L-DP-n9P"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="doneBarButton" destination="NxQ-Cq-d0b" id="nLL-Eq-2sH"/>
-                        <outlet property="textField" destination="5Ia-9o-EgZ" id="SCQ-xX-fNp"/>
+                        <outlet property="textField" destination="5Ia-9o-EgZ" id="MyF-sb-tQO"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e7L-6Q-FMZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="998" y="1012"/>
+            <point key="canvasLocation" x="1028" y="887"/>
         </scene>
         <!--Add Item-->
         <scene sceneID="gFJ-ot-FEA">
@@ -206,7 +211,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XpL-tq-w46" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2267" y="171"/>
+            <point key="canvasLocation" x="2916" y="99"/>
         </scene>
         <!--All Lists-->
         <scene sceneID="jjs-BW-1NK">
@@ -230,12 +235,12 @@
                     </navigationItem>
                     <connections>
                         <segue destination="gpa-ws-54m" kind="show" identifier="ShowChecklist" id="GVZ-Fj-3Gf"/>
-                        <segue destination="tHV-fo-64M" kind="show" id="KLn-My-v6G"/>
+                        <segue destination="tHV-fo-64M" kind="show" identifier="EditChecklist" id="KLn-My-v6G"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6B6-hC-bUo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="998" y="-747"/>
+            <point key="canvasLocation" x="1028" y="100"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="KXf-bx-Aen">
@@ -253,12 +258,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="055-WV-JxF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="84" y="83"/>
+            <point key="canvasLocation" x="83" y="99"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="8Mm-tr-x6R"/>
-        <segue reference="XMA-pb-SwG"/>
+        <segue reference="lX7-iY-8VE"/>
+        <segue reference="KLn-My-v6G"/>
     </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">
