@@ -13,10 +13,13 @@ class Checklist: NSObject, Codable {
     //MARK: - Var
     var name: String
     var items = [ChecklistItem]()
+    var iconName: String
 
     //MARK: - Init
-    init(name: String) {
+    init(name: String, iconName: String = "No icon") {
         self.name = name
+        self.iconName = iconName
+        super.init()
     }
     
     //MARK: - Functions

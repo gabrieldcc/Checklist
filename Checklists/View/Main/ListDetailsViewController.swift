@@ -18,6 +18,8 @@ class ListDetailsViewController: UITableViewController, UITextFieldDelegate {
     //MARK: - Var
     weak var delegate: ListDetailViewControllerDelegate?
     var checklistToEdit: Checklist?
+    var iconPickerVC: IconPickerViewController?
+    var iconName = "Folder"
     
     //MARK: - View Lifecycle
     override func viewDidLoad() {
@@ -27,9 +29,9 @@ class ListDetailsViewController: UITableViewController, UITextFieldDelegate {
             textField.text = checklist.name
             doneBarButton.isEnabled = true
             textField.delegate = self
+            iconName = checklist.iconName
         }
-        //FIXME: Teste
-        //doneBarButton.isEnabled = true
+        iconImage.image = UIImage(named: iconName)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,6 +41,7 @@ class ListDetailsViewController: UITableViewController, UITextFieldDelegate {
     
     //MARK: - IBOutlets
     @IBOutlet var textField: UITextField!
+    @IBOutlet weak var iconImage: UIImageView!
     @IBOutlet var doneBarButton: UIBarButtonItem!
     
     // MARK: - IBActions
@@ -46,14 +49,19 @@ class ListDetailsViewController: UITableViewController, UITextFieldDelegate {
         delegate?.listDetailViewControllerDidCancel(self)
     }
     @IBAction func done() {
-        if let checklist = checklistToEdit {
-            checklist.name = textField.text!
+        if let checklist = checklistToEdit, let text = textField.text {
+            checklist.name = text
+            checklist.iconName = iconName
+            delegate?.listDetailViewController(self, didFinishEditing: checklist)
             delegate?.listDetailViewController(self, didFinishEditing: checklist)
         } else {
-            let checklist = Checklist(name: textField.text!)
+            guard let text = textField.text else { return }
+            let checklist = Checklist(name: text)
+            checklist.iconName = iconName
             delegate?.itemDetailViewController(self, didFinishAdding: checklist)
         }
     }
+    
     
     
     // MARK: - TextFieldDelegate
@@ -75,9 +83,28 @@ class ListDetailsViewController: UITableViewController, UITextFieldDelegate {
     }
     
     //MARK: - Tableview
-    // tira a seleçao da celula (celula cinza)
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        return nil
+        return indexPath.section == 1 ? indexPath : nil
+    }
+    
+}
+
+//MARK: - IconPickerViewController Delegate
+extension ListDetailsViewController: IconPickerViewControllerDelegate {
+    func iconPicker(_ picker: IconPickerViewController, didPick iconName: String) {
+        self.iconName = iconName
+        iconImage.image = UIImage(named: iconName)
+        navigationController?.popViewController(animated: true)
+    }
+    
+}
+//MARK: - Navigation
+extension ListDetailsViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "PickIcon" {
+            let controller = segue.destination as! IconPickerViewController
+            controller.delegate = self
+        }
     }
     
 }

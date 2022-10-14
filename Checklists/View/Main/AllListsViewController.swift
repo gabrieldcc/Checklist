@@ -18,14 +18,17 @@ final class AllListsViewController: UITableViewController, ListDetailViewControl
     //MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
         navigationController?.navigationBar.prefersLargeTitles = true
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
         
         for list in dataModel.lists {
             let item = ChecklistItem(text: "Item for \(list.name)")
             list.items.append(item)
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -62,23 +65,27 @@ final class AllListsViewController: UITableViewController, ListDetailViewControl
     }
     
     func itemDetailViewController(_ controller: ListDetailsViewController, didFinishAdding checklist: Checklist) {
-        let newRowIndex = dataModel.lists.count
         dataModel.lists.append(checklist)
+        dataModel.sortChecklists()
+        tableView.reloadData()
         
-        let indexPath = IndexPath(row: newRowIndex, section: 0)
-        let indexPaths = [indexPath]
-        tableView.insertRows(at: indexPaths, with: .automatic)
+//        let newRowIndex = dataModel.lists.count
+//        let indexPath = IndexPath(row: newRowIndex, section: 0)
+//        let indexPaths = [indexPath]
+//        tableView.insertRows(at: indexPaths, with: .automatic)
         
         navigationController?.popViewController(animated: true)
     }
     
     func listDetailViewController(_ controller: ListDetailsViewController, didFinishEditing checklist: Checklist) {
-        if let index = dataModel.lists.firstIndex(of: checklist) {
-            let indexPath = IndexPath(row: index, section: 0)
-            if let cell = tableView.cellForRow(at: indexPath) {
-                cell.textLabel?.text = checklist.name
-            }
-        }
+//        if let index = dataModel.lists.firstIndex(of: checklist) {
+//            let indexPath = IndexPath(row: index, section: 0)
+//            if let cell = tableView.cellForRow(at: indexPath) {
+//                cell.textLabel?.text = checklist.name
+//            }
+//        }
+        dataModel.sortChecklists()
+        tableView.reloadData()
         navigationController?.popViewController(animated: true)
     }
     
@@ -91,19 +98,41 @@ final class AllListsViewController: UITableViewController, ListDetailViewControl
     }
     
     // MARK: - Tableview
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
+        // create cell
+        let cell: UITableViewCell!
+        if let tmp = tableView.dequeueReusableCell(
+            withIdentifier: cellIdentifier) {
+            cell = tmp
+        } else {
+            cell = UITableViewCell(
+                style: .subtitle,
+                reuseIdentifier: cellIdentifier)
+        }
+        // set cell
         let checklist = dataModel.lists[indexPath.row]
         cell.textLabel?.text = checklist.name
         cell.accessoryType = .detailDisclosureButton
+        cell.detailTextLabel!.text = "\(checklist.countUncheckedItems()) Remaining"
+        
+        // set detail text
+        let count  = checklist.countUncheckedItems()
+        if checklist.items.count == 0 {
+            cell.detailTextLabel?.text = "No items"
+        } else {
+            cell.detailTextLabel?.text = count == 0 ? "All done" : "\(count) Remaining"
+        }
+        
+        // set cell image
+        cell.imageView?.image = UIImage(named: checklist.iconName)
+        
         return cell
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataModel.lists.count
     }
-    
+      
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         dataModel.indexOfSelectedChecklist = indexPath.row
         let checklist = dataModel.lists[indexPath.row]
