@@ -53,7 +53,6 @@ class ListDetailsViewController: UITableViewController, UITextFieldDelegate {
             checklist.name = text
             checklist.iconName = iconName
             delegate?.listDetailViewController(self, didFinishEditing: checklist)
-            delegate?.listDetailViewController(self, didFinishEditing: checklist)
         } else {
             guard let text = textField.text else { return }
             let checklist = Checklist(name: text)

@@ -63,7 +63,8 @@ final class ChecklistViewController: UITableViewController, ItemDetailViewContro
     
     private func configureText(for cell: UITableViewCell, with item: ChecklistItem) {
         let label = cell.viewWithTag(1000) as! UILabel
-        label.text = item.text
+        //label.text = item.text
+        label.text = "\(item.itemID) : \(item.text)"
     }
     
     private func appendItems() {
@@ -74,7 +75,9 @@ final class ChecklistViewController: UITableViewController, ItemDetailViewContro
         let label = cell.viewWithTag(1001) as! UILabel
         
         if item.isChecked {
+            let customBlue = UIColor(red: 4/255, green: 169/255, blue: 235/255, alpha: 1)
             label.text = "√"
+            label.textColor = customBlue
         } else {
             label.text = ""
         }

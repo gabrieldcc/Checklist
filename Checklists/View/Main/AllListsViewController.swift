@@ -68,22 +68,10 @@ final class AllListsViewController: UITableViewController, ListDetailViewControl
         dataModel.lists.append(checklist)
         dataModel.sortChecklists()
         tableView.reloadData()
-        
-//        let newRowIndex = dataModel.lists.count
-//        let indexPath = IndexPath(row: newRowIndex, section: 0)
-//        let indexPaths = [indexPath]
-//        tableView.insertRows(at: indexPaths, with: .automatic)
-        
         navigationController?.popViewController(animated: true)
     }
     
     func listDetailViewController(_ controller: ListDetailsViewController, didFinishEditing checklist: Checklist) {
-//        if let index = dataModel.lists.firstIndex(of: checklist) {
-//            let indexPath = IndexPath(row: index, section: 0)
-//            if let cell = tableView.cellForRow(at: indexPath) {
-//                cell.textLabel?.text = checklist.name
-//            }
-//        }
         dataModel.sortChecklists()
         tableView.reloadData()
         navigationController?.popViewController(animated: true)
