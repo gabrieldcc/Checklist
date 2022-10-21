@@ -37,7 +37,7 @@ final class ChecklistViewController: UITableViewController, ItemDetailViewContro
 //            print("Error decoding item array: \(error.localizedDescription)")
 //        }
 //    }
-    
+//    
 //    private func saveChecklistsItems() {
 //        let encoder = PropertyListEncoder()
 //        do {
@@ -49,14 +49,14 @@ final class ChecklistViewController: UITableViewController, ItemDetailViewContro
 //            print("Error encoding item array: \(error.localizedDescription)")
 //        }
 //    }
-    
+//    
 //    private func documentsDirectory() -> URL {
 //        let paths = FileManager.default.urls(
 //            for: .documentDirectory,
 //            in: .userDomainMask)
 //        return paths[0]
 //    }
-    
+//    
 //    private func dataFilePath() -> URL {
 //        return documentsDirectory().appendingPathComponent("Checklist.plist")
 //    }

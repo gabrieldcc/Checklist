@@ -253,20 +253,25 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remind me" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3kn-IU-lek">
-                                                    <rect key="frame" x="0.0" y="5.3333333333333321" width="357" height="21"/>
+                                                    <rect key="frame" x="16" y="5.3333333333333321" width="325" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="884-gt-zdj">
-                                                    <rect key="frame" x="365" y="0.0" width="51" height="31.333333333333332"/>
+                                                    <rect key="frame" x="349" y="0.0" width="51" height="31.333333333333332"/>
+                                                    <color key="tintColor" red="0.015686274510000001" green="0.66274509800000003" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <color key="onTintColor" red="0.015686274510000001" green="0.66274509800000003" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <connections>
+                                                        <action selector="shouldRemindToggled:" destination="PfO-1G-stz" eventType="valueChanged" id="IQ4-Je-I4P"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="884-gt-zdj" firstAttribute="top" secondItem="2Xw-Dh-5iZ" secondAttribute="top" id="S8D-fj-DQi"/>
-                                                <constraint firstItem="3kn-IU-lek" firstAttribute="leading" secondItem="2Xw-Dh-5iZ" secondAttribute="leading" id="V3q-UL-rHZ"/>
+                                                <constraint firstItem="3kn-IU-lek" firstAttribute="leading" secondItem="2Xw-Dh-5iZ" secondAttribute="leading" constant="16" id="V3q-UL-rHZ"/>
                                                 <constraint firstItem="3kn-IU-lek" firstAttribute="centerY" secondItem="2Xw-Dh-5iZ" secondAttribute="centerY" id="eW3-xX-pX8"/>
-                                                <constraint firstAttribute="trailing" secondItem="884-gt-zdj" secondAttribute="trailing" id="pz1-0d-8hE"/>
+                                                <constraint firstAttribute="trailing" secondItem="884-gt-zdj" secondAttribute="trailing" constant="16" id="pz1-0d-8hE"/>
                                                 <constraint firstAttribute="bottom" secondItem="884-gt-zdj" secondAttribute="bottom" id="t1h-5g-Q3d"/>
                                                 <constraint firstItem="884-gt-zdj" firstAttribute="leading" secondItem="3kn-IU-lek" secondAttribute="trailing" constant="8" id="vIe-D0-fcp"/>
                                             </constraints>
@@ -286,7 +291,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="kAf-Wd-TT0">
-                                                    <rect key="frame" x="168" y="4" width="324" height="44"/>
+                                                    <rect key="frame" x="168" y="4" width="230" height="44"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="230" id="Eke-Pc-kxy"/>
                                                         <constraint firstAttribute="height" constant="44" id="lKj-HL-r8W"/>

@@ -10,7 +10,7 @@ import Foundation
 final class DataModel {
     
     //MARK: - Var
-    var lists = [Checklist]()   
+    var lists = [Checklist]()
     var indexOfSelectedChecklist: Int {
         get {
             return UserDefaults.standard.integer(forKey: "ChecklistIndex")
@@ -30,7 +30,7 @@ final class DataModel {
     //MARK: - Functions
     class func nextChecklistItemID() -> Int {
         let userDefaults = UserDefaults.standard
-        let itemID = UserDefaults.integer(forKey: "ChecklistItemID")
+        let itemID = userDefaults.integer(forKey: "ChecklistItemID")
         userDefaults.set(itemID + 1, forKey: "ChecklistItemID")
         return itemID
     }
@@ -83,14 +83,14 @@ final class DataModel {
             print("Error encoding list array: \(error.localizedDescription)")
         }
     }
-
+    
     private func loadChecklists() {
         let path = dataFilePath()
         if let data = try? Data(contentsOf: path) {
             let decoder = PropertyListDecoder()
             do {
                 lists = try decoder.decode([Checklist].self, from: data)
-                sortChecklists()   
+                sortChecklists()
             } catch {
                 print("Error decoding list array: \(error.localizedDescription)")
             }
