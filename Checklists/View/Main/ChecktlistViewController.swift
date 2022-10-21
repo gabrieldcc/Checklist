@@ -27,39 +27,6 @@ final class ChecklistViewController: UITableViewController, ItemDetailViewContro
     }
     
     //MARK: - Functions
-//    private func loadChecklistItem() {
-//        let path = dataFilePath()
-//        guard let data = try? Data(contentsOf: path) else { return }
-//        let decoder = PropertyListDecoder()
-//        do {
-//            items = try decoder.decode([ChecklistItem].self, from: data)
-//        } catch {
-//            print("Error decoding item array: \(error.localizedDescription)")
-//        }
-//    }
-//    
-//    private func saveChecklistsItems() {
-//        let encoder = PropertyListEncoder()
-//        do {
-//            let data = try encoder.encode(items)
-//            try data.write(
-//                to: dataFilePath(),
-//                options: Data.WritingOptions.atomic)
-//        } catch {
-//            print("Error encoding item array: \(error.localizedDescription)")
-//        }
-//    }
-//    
-//    private func documentsDirectory() -> URL {
-//        let paths = FileManager.default.urls(
-//            for: .documentDirectory,
-//            in: .userDomainMask)
-//        return paths[0]
-//    }
-//    
-//    private func dataFilePath() -> URL {
-//        return documentsDirectory().appendingPathComponent("Checklist.plist")
-//    }
     
     private func configureText(for cell: UITableViewCell, with item: ChecklistItem) {
         let label = cell.viewWithTag(1000) as! UILabel
@@ -147,6 +114,7 @@ final class ChecklistViewController: UITableViewController, ItemDetailViewContro
         
         configureText(for: cell, with: item)
         configureCheckmark(for: cell, with: item)
+
         return cell
     }
     
